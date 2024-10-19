@@ -1,4 +1,4 @@
-package entities;
+package model.entities;
 
 import java.io.Serializable;
 
@@ -9,13 +9,12 @@ public class Department implements Serializable {
 	private Integer id;
 	private String name;
 	
-	
 	public Department() {
 	}
 
 	public Department(Integer id, String name) {
-		this.name = name;
 		this.id = id;
+		this.name = name;
 	}
 
 	public Integer getId() {
@@ -63,6 +62,4 @@ public class Department implements Serializable {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
-	
-	
 }

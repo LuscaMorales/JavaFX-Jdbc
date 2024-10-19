@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
-import entities.Department;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.entities.Department;
 import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable{
