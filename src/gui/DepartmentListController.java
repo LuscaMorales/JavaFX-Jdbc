@@ -85,6 +85,7 @@ public class DepartmentListController implements Initializable{
 			DepartmentFormController controller = loader.getController();
 			//Instancia do objeto Department para ser setado e assim ser adicionado ou atualizado
 			controller.setDepartment(obj);
+			controller.setDepartmentService(new DepartmentService());
 			controller.updateFormData();
 			
 			//É preciso instanciar um novo stage para carregar uma nova tela e será o Dialog Stage
