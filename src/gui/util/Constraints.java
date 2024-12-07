@@ -22,7 +22,7 @@ public class Constraints {
 			});
 		}
 		
-		//Verificador se é nulo ou 
+		//Verificador se é nulo ou double
 		public static void setTextFieldDouble(TextField txt) {
 			txt.textProperty().addListener((obs, oldValue, newValue) -> {
 				if(newValue != null && !newValue.matches("\\d*([\\.]\\d*)?")) {
