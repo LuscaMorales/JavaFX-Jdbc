@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +27,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
 import model.services.SellerService;
@@ -65,7 +70,7 @@ public class SellerListController implements Initializable, DataChangeListener{
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
 		Seller obj = new Seller();
-	//	createDialogForm(obj, "/gui/SellerForm.fxml", parentStage);
+		createDialogForm(obj, "/gui/SellerForm.fxml", parentStage);
 	}
 	
 	public void setSellerService(SellerService service) {
@@ -102,34 +107,34 @@ public class SellerListController implements Initializable, DataChangeListener{
 	
 	
 	private void createDialogForm(Seller obj,String absoluteName, Stage parentStage) {
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-//			Pane pane = loader.load();
-//			
-//			//Controller da tela SellerFormController
-//			SellerFormController controller = loader.getController();
-//			//Instancia do objeto Seller para ser setado e assim ser adicionado ou atualizado
-//			controller.setSeller(obj);
-//			controller.setSellerService(new SellerService());
-//			controller.subscribeDataChangeListener(this);
-//			controller.updateFormData();
-//			
-//			
-//			//É preciso instanciar um novo stage para carregar uma nova tela e será o Dialog Stage
-//			Stage dialogStage = new Stage();
-//			dialogStage.setTitle("Enter Seller Data");
-//			//Como é um novo stage terá que receber uma nova cena
-//			dialogStage.setScene(new Scene(pane));
-//			//setResizable diz se a janela pode ou não ser redimensionada, sendo não possível
-//			dialogStage.setResizable(false);
-//			//A funçao initOwner diz quem é o pai do Stage atual
-//			dialogStage.initOwner(parentStage);
-//			//initModality indica qual a modalidade, WindowModal indica que só podera retornar se estiver fechada
-//			dialogStage.initModality(Modality.WINDOW_MODAL);
-//			dialogStage.showAndWait();
-//		}catch(IOException e){
-//			Alerts.ShowAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-//		}
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+			//Controller da tela SellerFormController
+			SellerFormController controller = loader.getController();
+			//Instancia do objeto Seller para ser setado e assim ser adicionado ou atualizado
+			controller.setSeller(obj);
+			controller.setSellerService(new SellerService());
+			controller.subscribeDataChangeListener(this);
+			controller.updateFormData();
+			
+			
+			//É preciso instanciar um novo stage para carregar uma nova tela e será o Dialog Stage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Enter Seller Data");
+			//Como é um novo stage terá que receber uma nova cena
+			dialogStage.setScene(new Scene(pane));
+			//setResizable diz se a janela pode ou não ser redimensionada, sendo não possível
+			dialogStage.setResizable(false);
+			//A funçao initOwner diz quem é o pai do Stage atual
+			dialogStage.initOwner(parentStage);
+			//initModality indica qual a modalidade, WindowModal indica que só podera retornar se estiver fechada
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.showAndWait();
+		}catch(IOException e){
+			Alerts.ShowAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
 	}
 
 	@Override
